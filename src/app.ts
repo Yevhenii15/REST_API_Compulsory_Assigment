@@ -11,7 +11,7 @@ const app: Application = express();
 /**
  * Starts the Express server
  */
-export function startServer() {
+export const startServer = () => {
   // Bind the routes to the application
   app.use("/api", routes);
 
@@ -20,7 +20,7 @@ export function startServer() {
 
   // Start the server
   const PORT: number = parseInt(process.env.PORT as string) || 4000;
-  app.listen(PORT, function () {
-    console.log("Server is up and running on port: " + PORT);
-  });
-}
+  app.listen(PORT, () =>
+    console.log(`Server is up and running on port: ${PORT}`)
+  );
+};

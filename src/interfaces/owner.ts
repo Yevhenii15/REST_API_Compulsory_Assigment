@@ -5,6 +5,6 @@ export interface Owner extends Document {
   password: string;
   phoneNumber: string; // Contact number
   address: string; // Home address
-  CreatedAt: Date;
-  UpdatedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -1,17 +1,9 @@
 import mongoose from "mongoose";
 
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      DBHOST: string;
-    }
-  }
-}
-
 /**
  * Test the connection to the database
  */
-export async function testConnection(): Promise<void> {
+export const testConnection = async (): Promise<void> => {
   try {
     await connect();
     await disconnect();
@@ -19,12 +11,12 @@ export async function testConnection(): Promise<void> {
   } catch (error) {
     console.error("❌ Failed to test database connection:", error);
   }
-}
+};
 
 /**
  * Connect to the database
  */
-export async function connect(): Promise<void> {
+export const connect = async (): Promise<void> => {
   try {
     if (!process.env.DBHOST) {
       throw new Error("❌ DBHOST environment variable is missing.");
@@ -42,16 +34,16 @@ export async function connect(): Promise<void> {
   } catch (error) {
     console.error("❌ Error connecting to the database:", error);
   }
-}
+};
 
 /**
  * Disconnect from the database
  */
-export async function disconnect(): Promise<void> {
+export const disconnect = async (): Promise<void> => {
   try {
     await mongoose.disconnect();
     console.log("🔌 Database connection closed.");
   } catch (error) {
     console.error("❌ Error closing the database connection:", error);
   }
-}
+};
