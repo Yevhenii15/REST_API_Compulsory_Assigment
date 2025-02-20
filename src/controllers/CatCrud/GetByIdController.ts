@@ -3,7 +3,7 @@ import { catModel } from "../../modules/catModel";
 import { connect, disconnect } from "../../db/database";
 
 /**
- * Retrieves a product by its id from the data sources
+ * Retrieves a cat by its id from the data sources
  * @param req
  * @param res
  */

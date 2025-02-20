@@ -5,7 +5,7 @@ import { connect, disconnect } from "../../db/database";
 // CRUD - create, read/get, update, delete
 
 /**
- * Creates a new product in the data source based on the request body
+ * Creates a new cat in the data source based on the request body
  * @param req
  * @param res
  */
