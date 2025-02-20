@@ -1,14 +1,26 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import dotenvFlow from "dotenv-flow";
-
+import { testConnection } from "./db/database";
 import routes from "./routes";
+
 dotenvFlow.config();
+
+// Create express application
 const app: Application = express();
 
-app.use("/api", routes);
+/**
+ * Starts the Express server
+ */
 export function startServer() {
+  // Bind the routes to the application
+  app.use("/api", routes);
+
+  // Test the connection to the database
+  testConnection();
+
+  // Start the server
   const PORT: number = parseInt(process.env.PORT as string) || 4000;
   app.listen(PORT, function () {
-    console.log("Server is running on port " + PORT);
+    console.log("Server is up and running on port: " + PORT);
   });
 }
