@@ -12,6 +12,7 @@ const app: Application = express();
  * Starts the Express server
  */
 export const startServer = () => {
+  app.use(express.json());
   // Bind the routes to the application
   app.use("/api", routes);
 
