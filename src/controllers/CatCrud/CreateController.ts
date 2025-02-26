@@ -1,26 +1,33 @@
 import { Request, Response } from "express";
-import { catModel } from "../../modules/catModel";
+import { catModel } from "../../models/catModel";
 import { connect, disconnect } from "../../db/database";
 
-// CRUD - create, read/get, update, delete
+// Extend Request to include ownerId
+interface AuthRequest extends Request {
+  ownerId?: string;
+}
 
 /**
- * Creates a new cat in the data source based on the request body
- * @param req
- * @param res
+ * Creates a new cat with the authenticated owner's ID
  */
-export const createCat = async (req: Request, res: Response): Promise<void> => {
-  const data = req.body;
+export const createCat = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  if (!req.ownerId) {
+    res.status(403).json({ error: "Unauthorized" });
+    return;
+  }
 
   try {
     await connect();
 
-    const cat = new catModel(data);
+    const cat = new catModel({ ...req.body, _owner: req.ownerId }); // Attach owner ID
     const result = await cat.save();
 
-    res.status(201).send(result);
+    res.status(201).json(result);
   } catch (err) {
-    res.status(500).send("Error creating cat. Error: " + err);
+    res.status(500).json({ error: "Error creating cat", details: err });
   } finally {
     await disconnect();
   }

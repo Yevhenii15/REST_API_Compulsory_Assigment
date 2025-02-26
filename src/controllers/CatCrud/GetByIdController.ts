@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { catModel } from "../../modules/catModel";
+import { catModel } from "../../models/catModel";
 import { connect, disconnect } from "../../db/database";
 
 /**
