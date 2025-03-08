@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 // CRUD controllers
 import { createCat } from "./controllers/CatCrud/CreateController";
 import { getAllCats } from "./controllers/CatCrud/GetController";
+import { getCatsByOwner } from "./controllers/CatCrud/GetByOwnerController";
 import { getCatById } from "./controllers/CatCrud/GetByIdController";
 import { getCatByQuery } from "./controllers/CatCrud/GetByQueryController";
 import { updateCatById } from "./controllers/CatCrud/UpdateController";
@@ -44,6 +45,37 @@ router.get("/", (req: Request, res: Response) => {
  *         description: Successfully retrieved cats
  */
 router.get("/cats", getAllCats);
+
+/**
+ * @swagger
+ * /owner/{ownerId}/cats:
+ *   get:
+ *     tags:
+ *       - Cat Routes
+ *     summary: List all cats for a specific owner
+ *     description: Retrieves all cats owned by a specific owner using the owner's ID
+ *     parameters:
+ *       - in: path
+ *         name: ownerId
+ *         required: true
+ *         description: The ID of the owner to retrieve cats for
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the cats for the specified owner
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: "#/components/schemas/Cat"  # Assuming you have a 'Cat' schema defined in your Swagger components
+ *       404:
+ *         description: No cats found for the specified owner
+ *       500:
+ *         description: Internal server error occurred
+ */
+router.get("/owner/:ownerId/cats", getCatsByOwner);
 
 /**
  * @swagger
