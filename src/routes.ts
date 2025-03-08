@@ -5,6 +5,7 @@ import { getAllCats } from "./controllers/CatCrud/GetController";
 import { getCatsByOwner } from "./controllers/CatCrud/GetByOwnerController";
 import { getCatById } from "./controllers/CatCrud/GetByIdController";
 import { getCatByQuery } from "./controllers/CatCrud/GetByQueryController";
+import { adoptCat } from "./controllers/CatCrud/AdoptController";
 import { updateCatById } from "./controllers/CatCrud/UpdateController";
 import { deleteCatById } from "./controllers/CatCrud/DeleteController";
 // Auth controllers
@@ -126,6 +127,53 @@ router.get("/cats/:id", getCatById);
 router.get("/cats/query/:key/:val", getCatByQuery);
 
 // Create, Update, Delete routes
+/**
+ * @swagger
+ * /cats/adopt/{catId}:
+ *   put:
+ *     tags:
+ *       - Cat Routes
+ *     summary: Adopt a cat
+ *     description: Allows an owner to adopt a specific cat by providing the owner's ID
+ *     security:
+ *      - ApiKeyAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: catId
+ *         required: true
+ *         description: The ID of the cat being adopted
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               ownerId:
+ *                 type: string
+ *                 description: The ID of the owner adopting the cat
+ *     responses:
+ *       200:
+ *         description: Cat adopted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 cat:
+ *                   $ref: "#/components/schemas/Cat"
+ *       400:
+ *         description: Cat is already adopted
+ *       404:
+ *         description: Cat not found
+ *       500:
+ *         description: Internal server error
+ */
+router.put("/cats/adopt/:catId", verifyToken, adoptCat);
 
 /**
  * @swagger
