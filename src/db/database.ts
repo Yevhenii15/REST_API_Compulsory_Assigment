@@ -7,7 +7,7 @@ export const testConnection = async (): Promise<void> => {
   try {
     await connect();
     await disconnect();
-    console.log("✅ Database connection test successful.");
+    // console.log("✅ Database connection test successful.");
   } catch (error) {
     console.error("❌ Failed to test database connection:", error);
   }
@@ -27,7 +27,7 @@ export const connect = async (): Promise<void> => {
     const db = mongoose.connection.db;
     if (db) {
       await db.admin().command({ ping: 1 });
-      console.log("✅ Successfully connected to the database.");
+      // console.log("✅ Successfully connected to the database.");
     } else {
       throw new Error("❌ Database connection could not be established.");
     }
@@ -42,7 +42,7 @@ export const connect = async (): Promise<void> => {
 export const disconnect = async (): Promise<void> => {
   try {
     await mongoose.disconnect();
-    console.log("🔌 Database connection closed.");
+    // console.log("🔌 Database connection closed.");
   } catch (error) {
     console.error("❌ Error closing the database connection:", error);
   }

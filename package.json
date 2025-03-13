@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "start": "npx nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "npx ts-node ./src/util/dataSeeder.ts"
+    "start": "cross-env  NODE_ENV=development npx nodemon",
+    "seed": "npx ts-node ./src/util/dataSeeder.ts",
+    "testdb": "cross-env NODE_ENV=test npx ts-node ./src/index.ts",
+    "test": "npx playwright test --reporter=list"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.51.0",
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
     "@types/joi": "^17.2.2",

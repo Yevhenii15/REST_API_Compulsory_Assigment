@@ -28,7 +28,7 @@ const router: Router = Router();
  *         description: Server up and running.
  */
 router.get("/", (req: Request, res: Response) => {
-  res.status(200).send("Welcome to the API");
+  res.status(200).json({ message: "Welcome to the API" });
 });
 
 // Read routes
