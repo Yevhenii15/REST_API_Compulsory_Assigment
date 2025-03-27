@@ -21,7 +21,7 @@ export function setupDocs(app: Application) {
         description: "Local development server",
       },
       {
-        url: "https://cats-api-kpb3.onrender.com",
+        url: "https://cats-api-kpb3.onrender.com/api",
         description: "Online development server",
       },
     ],
