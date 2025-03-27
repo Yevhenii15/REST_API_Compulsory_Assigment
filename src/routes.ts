@@ -12,6 +12,7 @@ import { deleteCatById } from "./controllers/CatCrud/DeleteController";
 import { loginOwner } from "./controllers/OwnerAuth/loginController";
 import { registerOwner } from "./controllers/OwnerAuth/registerController";
 import { verifyToken } from "./controllers/OwnerAuth/verifyTokenController";
+import { startCron } from "./controllers/devToolsController";
 
 const router: Router = Router();
 
@@ -30,6 +31,25 @@ const router: Router = Router();
 router.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Welcome to the API" });
 });
+
+
+/**
+ * @swagger
+ * /start-cron:
+ *   get:
+ *     tags:
+ *       - Start Cron Jobs
+ *     summary: Starts the cron job that keep render alive
+ *     description: Starts the cron job that keep render alive
+ *     responses:
+ *       200:
+ *         description: Response from the cron job
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array               
+ */
+router.get('/start-cron', startCron);
 
 // Read routes
 

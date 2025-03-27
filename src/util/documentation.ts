@@ -20,6 +20,10 @@ export function setupDocs(app: Application) {
         url: "http://localhost:4000/api/",
         description: "Local development server",
       },
+      {
+        url: "https://cats-api-kpb3.onrender.com",
+        description: "Online development server",
+      },
     ],
     components: {
       securitySchemes: {
