@@ -7,6 +7,7 @@ import { connect, disconnect } from "../../db/database"; // Importing DB connect
  * @param req
  * @param res
  */
+
 export const getCatsByOwner = async (
   req: Request,
   res: Response,
