@@ -70,10 +70,16 @@ export function setupDocs(app: Application) {
             password: { type: "string", minLength: 8, maxLength: 255 },
             phoneNumber: { type: "string", description: "Unique phone number" },
             address: { type: "string" },
-            createdAt: { type: "string", format: "date-time" },
-            updatedAt: { type: "string", format: "date-time" },
           },
           required: ["name", "email", "password", "phoneNumber", "address"],
+        },
+        Login: {
+          type: "object",
+          properties: {
+            email: { type: "string", format: "email" },
+            password: { type: "string", minLength: 8, maxLength: 255 },
+          },
+          required: ["email", "password"],
         },
       },
     },

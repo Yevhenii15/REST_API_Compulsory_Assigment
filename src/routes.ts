@@ -32,7 +32,6 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Welcome to the API" });
 });
 
-
 /**
  * @swagger
  * /start-cron:
@@ -47,9 +46,9 @@ router.get("/", (req: Request, res: Response) => {
  *         content:
  *           application/json:
  *             schema:
- *               type: array               
+ *               type: array
  */
-router.get('/start-cron', startCron);
+router.get("/start-cron", startCron);
 
 // Read routes
 
@@ -304,7 +303,7 @@ router.post("/owner/register", registerOwner);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Owner"
+ *             $ref: "#/components/schemas/Login"
  *     responses:
  *       200:
  *         description: Owner logged in successfully
