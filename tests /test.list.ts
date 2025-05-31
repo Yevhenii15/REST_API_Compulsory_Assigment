@@ -5,10 +5,11 @@ import { test } from "@playwright/test";
 import health from "./health.test";
 import ownerRegister from "./owner.test";
 import catTestCollection from "./cat.test";
+import deleteCatTestCollection from "./delete.test";
+import adoptCatTestCollection from "./adopt.test";
 
 import { ownerModel } from "../src/models/ownerModel";
 import { catModel } from "../src/models/catModel";
-
 
 import dotenvFlow from "dotenv-flow";
 import { connect, disconnect } from "../src/db/database";
@@ -42,3 +43,5 @@ setup();
 test.describe(health);
 test.describe(ownerRegister);
 test.describe(catTestCollection);
+test.describe(deleteCatTestCollection);
+test.describe(adoptCatTestCollection);
